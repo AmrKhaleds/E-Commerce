@@ -12,6 +12,16 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('login');
+        // return $request->expectsJson() ? null : route('login'); // Laravel Default
+        // using routIs function from Request Class to determine if the incoming request has matched a admin ?
+        if (!$request->expectsJson())
+        {
+            if ($request->routeIs('admin.*')) {
+                return route('getAdmin.login');
+            }
+            else{
+                return route('login');
+            }
+        }
     }
 }
