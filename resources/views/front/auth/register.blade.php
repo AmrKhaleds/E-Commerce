@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -74,4 +74,67 @@
         </div>
     </div>
 </div>
+@endsection --}}
+@extends('layouts.front.auth')
+@section('account')
+    <div class="tab-scontent" id="tab-sregister">
+        <div class="card mb-0">
+            <div class="card-body" style="padding: 40px;">
+                <h3>{{ __('Register for an Account') }}</h3>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul style="padding: 0 25px;">
+                            @foreach ($errors->all() as $error)
+                            <li>
+                                {{ $error }}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form id="register-form" name="register-form" class="row mb-0" action="{{ route('register') }}" method="POST">
+                    @csrf
+                    <div class="col-12 form-group">
+                        <label for="register-form-name">{{ __('First Name:') }}</label>
+                        <input type="text" id="register-form-name" name="firstName" value="" class="form-control" />
+                    </div>
+
+                    <div class="col-12 form-group">
+                        <label for="register-form-name">{{ __('Last Name:') }}</label>
+                        <input type="text" id="register-form-name" name="lastName" value="" class="form-control" />
+                    </div>
+
+                    <div class="col-12 form-group">
+                        <label for="register-form-email">{{ __('Email Address:') }}</label>
+                        <input type="text" id="register-form-email" name="email" value="" class="form-control" />
+                    </div>
+
+                    {{-- <div class="col-12 form-group">
+                        <label for="register-form-username">Choose a Username:</label>
+                        <input type="text" id="register-form-username" name="register-form-username" value="" class="form-control" />
+                    </div> --}}
+
+                    <div class="col-12 form-group">
+                        <label for="register-form-phone">{{ __('Phone:') }}</label>
+                        <input type="number" id="register-form-phone" name="phone" value="" class="form-control" />
+                    </div>
+
+                    <div class="col-12 form-group">
+                        <label for="register-form-password">{{ __('Choose Password:') }}</label>
+                        <input type="password" id="register-form-password" name="password" value="" class="form-control" />
+                    </div>
+
+                    <div class="col-12 form-group">
+                        <label for="register-form-repassword">{{ __('Re-enter Password:') }}</label>
+                        <input type="password" id="register-form-repassword" name="password_confirmation" value="" class="form-control" />
+                    </div>
+
+                    <div class="col-12 form-group">
+                        <button class="button button-3d button-black m-0" id="register-form-submit" name="submit" value="register">{{ __('Register Now') }}</button>
+                        <a style="" href="{{ route('login') }}">{{ __('Or Login') }}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

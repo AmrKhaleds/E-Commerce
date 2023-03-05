@@ -101,26 +101,19 @@
                                             <li class="top-links-item"><a href="#"><img src="{{ asset('assets/front/images/icons/flags/german.png') }}" alt="German"> DE</a></li>
                                         </ul>
                                     </li>
-                                    <li class="top-links-item"><a href="#">Login</a>
-                                        <div class="top-links-section">
-                                            <form id="top-login" autocomplete="off">
-                                                <div class="form-group">
-                                                    <label>Username</label>
-                                                    <input type="email" class="form-control" placeholder="Email address">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="password" class="form-control" placeholder="Password" required="">
-                                                </div>
-                                                <div class="form-group form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="top-login-checkbox">
-                                                    <label class="form-check-label" for="top-login-checkbox">Remember Me</label>
-                                                </div>
-                                                <button class="btn btn-danger w-100" type="submit">Sign in</button>
-                                            </form>
-                                        </div>
-                                    </li>
+                                    @include('layouts.front.navLogin')
                                 </ul>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul style="padding: 0 25px;">
+                                            @foreach ($errors->all() as $error)
+                                            <li>
+                                                {{ $error }}
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </div><!-- .top-links end -->
 
                         </div>
@@ -139,8 +132,8 @@
                             <!-- Logo
                             ============================================= -->
                             <div id="logo">
-                                <a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="{{ asset('assets/front/images/logo.png') }}" alt="Canvas Logo"></a>
-                                <a href="index.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="{{ asset('assets/front/images/logo@2x.png') }}" alt="Canvas Logo"></a>
+                                <a href="{{ route('front') }}" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="{{ asset('assets/front/images/logo.png') }}" alt="Canvas Logo"></a>
+                                <a href="{{ route('front') }}" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="{{ asset('assets/front/images/logo@2x.png') }}" alt="Canvas Logo"></a>
                             </div><!-- #logo end -->
 
                             <div class="header-misc">
